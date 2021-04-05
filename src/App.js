@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Jumbotron, Container } from 'react-bootstrap'
+import ScenicSpot from './routes/ScenicSpot'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Jumbotron className="mb-1">
+        <Container>
+          <h1 className="horizontal-center">台灣景點</h1>
+        </Container>
+      </Jumbotron>
+      <div className="App" style={{ padding: '5px' }}>
+        <Switch>
+          <Route path='/' exact component={() => {
+            window.location.href = 'http://localhost:3000/scenicSpot';
+            return null;
+          }} />
+          <Route path='/scenicSpot' component={ScenicSpot} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
