@@ -16,10 +16,11 @@ const ScenicSpot = () => {
 
     //fetch first data
     useEffect(() => {
+        
         //refresh route
         if (window.performance) {
             const entries = performance.getEntriesByType("navigation");
-            if (entries.map(nav => nav.type) === "reload") {
+            if (entries.map(nav => nav.type).toString() == "reload") {
                 window.location.href = 'http://localhost:3000/scenicSpot';
             }
         }
@@ -50,7 +51,6 @@ const ScenicSpot = () => {
         setCities([...data])
     }
     const fetchScenic = async (original = true) => {
-        console.log(skip)
         const fetchLink = original ? `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${nowcity}?$top=30&$format=JSON`
             : `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${nowcity}?$top=30&$skip=${skip}&$format=JSON`
         const res = await fetch(fetchLink, {
