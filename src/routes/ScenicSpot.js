@@ -29,7 +29,8 @@ const ScenicSpot = () => {
     useEffect(() => {
         //fetch original task
         const addScenics = async () => {
-            setSkip(0)
+            
+            console.log(skip,"----")
             setBottom(false)
             await fetchScenic()
         }
@@ -49,6 +50,7 @@ const ScenicSpot = () => {
         setCities([...data])
     }
     const fetchScenic = async (original = true) => {
+        console.log(skip)
         const fetchLink = original ? `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${nowcity}?$top=30&$format=JSON`
             : `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${nowcity}?$top=30&$skip=${skip}&$format=JSON`
         const res = await fetch(fetchLink, {
@@ -79,6 +81,7 @@ const ScenicSpot = () => {
                 city.city === ename ? { ...city, variant: "primary" } : { ...city, variant: "secondary" }
             )
         )
+        setSkip(0)
         setNowCity(ename)
     }
 
