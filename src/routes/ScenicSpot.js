@@ -30,8 +30,6 @@ const ScenicSpot = () => {
     useEffect(() => {
         //fetch original task
         const addScenics = async () => {
-            
-            console.log(skip,"----")
             setBottom(false)
             await fetchScenic()
         }
